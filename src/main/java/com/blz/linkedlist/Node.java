@@ -2,6 +2,7 @@ package com.blz.linkedlist;
 
 public class Node {
     int data;
+    int previousData;
     Node next;
 
         Node(int data) {
@@ -12,18 +13,22 @@ public class Node {
 class LinkedList {
     Node head;
 
-    public void appendNode(int data) {
+    public void insertNode(int data, int previousData) {
         Node newNode = new Node(data);
-       if (head == null){
-           head = newNode;
+        Node current = head;
+       while (current.data != previousData){
+          current = current.next;
        }
-       else {
-           Node last = head;
-           while (last.next != null){
-               last = last.next;
-           }
-           last.next = newNode;
-       }
+       newNode.next = current.next;
+       current.next = newNode;
+
+    }
+
+
+    public void addNode(int data){
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
     }
     public void printList(){
         Node temp = head;
