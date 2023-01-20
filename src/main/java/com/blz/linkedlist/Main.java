@@ -6,7 +6,7 @@ public class Main {
         list.addNode(56);
         list.addNode(30);
         list.addNode(70);
-        list.pop();
+        list.popLast();
         list.printList();
     }
 }

@@ -12,22 +12,14 @@ public class Node {
 class LinkedList {
     Node head;
 
-    public void pop() {
+    public void popLast() {
         if (head == null) {
             System.out.println("List is empty");
             return;
         }
         Node current = head;
-        if (current.next == null) {
-            head = null;
-            return;
+            head = current.next;
         }
-        while (current.next.next != null) {
-            current = current.next;
-        }
-        current.next = null;
-
-    }
     public void addNode(int data){
         Node newNode = new Node(data);
         newNode.next = head;
