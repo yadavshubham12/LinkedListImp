@@ -11,11 +11,18 @@ public class Node {
 }
 class LinkedList {
     Node head;
+    Node tail;
 
     public void addNode(int data) {
         Node newNode = new Node(data);
-        newNode.next = head;
-        head = newNode;
+       if (head == null){
+           head = newNode;
+           tail = newNode;
+       }
+       else {
+           tail.next = newNode;
+           tail = newNode;
+       }
     }
     public void printList(){
         Node temp = head;
