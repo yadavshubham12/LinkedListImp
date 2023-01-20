@@ -4,24 +4,25 @@ public class Node {
     int data;
     Node next;
 
-    public Node(int data) {
+        Node(int data) {
         this.data = data;
-        this.next = next;
+        this.next = null;
     }
 }
 class LinkedList {
     Node head;
-    Node tail;
 
-    public void addNode(int data) {
+    public void appendNode(int data) {
         Node newNode = new Node(data);
        if (head == null){
            head = newNode;
-           tail = newNode;
        }
        else {
-           tail.next = newNode;
-           tail = newNode;
+           Node last = head;
+           while (last.next != null){
+               last = last.next;
+           }
+           last.next = newNode;
        }
     }
     public void printList(){
