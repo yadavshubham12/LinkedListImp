@@ -1,48 +1,34 @@
 package com.blz.linkedlist;
 
-public class Node {
-    int data;
-    Node next;
+class Node<T extends Comparable<T>> {
+    T data;
+    Node<T> next;
 
-        Node(int data) {
+    public Node(T data) {
         this.data = data;
-        this.next = null;
     }
 }
-class LinkedList {
-    Node head;
-    int size = 0;
 
-    public void deleteNode(int key) {
-        Node current = head;
-        Node prev = null;
-        if (current != null && current.data == key) {
-            head = current.next;
-            size--;
+class SortedLinkedList<T extends Comparable<T>> {
+    Node<T> head;
+
+    public void add(T data) {
+        Node<T> newNode = new Node<>(data);
+        if (head == null) {
+            head = newNode;
             return;
         }
-        while (current != null && current.data == key) {
-            prev = current;
+        Node<T> current = head;
+        if (current.data.compareTo(data) > 0) {
+            newNode.next = current;
+            head = newNode;
+            return;
+        }
+        while (current.next != null && current.next.data.compareTo(data) < 0) {
             current = current.next;
         }
-        if (current != null) {
-            prev.next = current.next;
-            size--;
-        }
+        newNode.next = current.next;
+        current.next = newNode;
     }
-    public void addNode (int data){
-        Node newNode = new Node(data);
-        newNode.next = head;
-        head = newNode;
-        size++;
-    }
-    public int size() {
-        return size;
-    }
-    public void printList(){
-        Node temp = head;
-        while (temp != null){
-            System.out.println(temp.data + " ");
-            temp = temp.next;
-        }
-    }
+}
+
