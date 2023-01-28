@@ -11,21 +11,33 @@ public class Node {
 }
 class LinkedList {
     Node head;
+    int size = 0;
 
-    public boolean findNode(int key) {
+    public void deleteNode(int key) {
         Node current = head;
-        while (current != null){
-            if (current.data == key){
-                return true;
-            }
+        Node prev = null;
+        if (current != null && current.data == key) {
+            head = current.next;
+            size--;
+            return;
+        }
+        while (current != null && current.data == key) {
+            prev = current;
             current = current.next;
         }
-        return false;
+        if (current != null) {
+            prev.next = current.next;
+            size--;
         }
-    public void addNode(int data){
+    }
+    public void addNode (int data){
         Node newNode = new Node(data);
         newNode.next = head;
         head = newNode;
+        size++;
+    }
+    public int size() {
+        return size;
     }
     public void printList(){
         Node temp = head;
@@ -34,4 +46,3 @@ class LinkedList {
             temp = temp.next;
         }
     }
-}
