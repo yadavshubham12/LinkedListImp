@@ -12,26 +12,28 @@ public class Node {
 class LinkedList {
     Node head;
 
-    public boolean findNode(int key) {
+    public void insertAfter(int key, int data){
         Node current = head;
-        while (current != null){
-            if (current.data == key){
-                return true;
-            }
+        while (current != null && current.data !=key){
             current = current.next;
         }
-        return false;
+        if (current != null){
+            Node newNode = new Node(data);
+            newNode.next = current.next;
+            current.next = newNode;
         }
+    }
     public void addNode(int data){
         Node newNode = new Node(data);
         newNode.next = head;
         head = newNode;
     }
-    public void printList(){
+    public String printList(){
         Node temp = head;
         while (temp != null){
             System.out.println(temp.data + " ");
             temp = temp.next;
         }
+        return null;
     }
 }
